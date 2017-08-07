@@ -79,8 +79,8 @@ repo sync -c -f -j$J --current-branch --no-tags --no-tag --no-clone-bundle --opt
 #Build
 . build/envsetup.sh
 #lunch lineage_$device-userdebug
-brunch $device -j$J
-#make otapackage -j16
+brunch $device
+#make otapackage -j$J
 #OR Whatever command suits your boat!
 
 #Upload Config for SFTP
