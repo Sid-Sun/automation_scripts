@@ -1,37 +1,29 @@
-Scripts to ease Android building, SFTP etc by automation.
+Scripts to automate!
+
+Torrent CLI script:
+
+Script to download torrents over jenkins
 
 Requirements:
-(1) Knowing what you're doing.
 
-(2) Not being a retard.
+1) Transmission CLI
+2) Link of torrent / magnet link
+3) Built for jenkins, might require some modification if you don't use it
 
-(3) Not being a Kanger.
+Usage:
 
-How to use build_sftp:
--> Script to build and upload the output zip via SFTP
+1) -ep is for Encryption Preffered, it'll use encryption when the other peer does and not when the other one doesn't you may change it to -er for encryption required; it won't use peers which don't support encryption
 
-Modifications that MAYBE needed:
+2) -w is the (where to download) download directory leave it as-if preferably
 
-(1) Setting the correct ccache dir in line #5
+3) -b is the blocklist of bad peers, it's required everytime cuz the list might change and because transmission won't use it without specifying
 
-(2) Setting the ccache limit, preset to 70GB line #6
+4) You may limit upload script by -u option (in KBPS)
 
-(3) Setting the desired output (out) dir line #9
+5) You'll need to stop the job once your download has finished else it'll keep acting like a seeder (if you want to do that, leave the job on)
 
-(4) Setting the desired KBUILD USER && HOST line #12 & #13 respectively
+6) Once downloaded, refer to your download with the job build number
 
-(5) Setting the number of threads your processor can handle. line #16 #24 && #25
+7) Jenkins must have rights to make DIRs and Files whereever you put this script (unless you change Working directory in script)
 
-(6) Setting the correct lunch patter aosp_$device-userdebug; line #23
-
-(7) Setting the correct SFTP variable from line #29 -> #32; #31 & #32 maybr fine left unchanged
-
-(8) Generating SSH key & adding it to your SFTP server. Password automation isn't possible over CLI (or I don't know it, AFAIK, it's possible only on FTP)
-
-How to use rr_build_sftp:
-
-(1) same as build_sftp.
-
-(2) Change the number of days upto your preference.
-
-(3) ADD Official config ONLY if you're a official maintainer.
+8) Specify string 'link' in job parameters, it takes torrent link and magnet links 
